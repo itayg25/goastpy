@@ -1,9 +1,9 @@
-from distutils.core import setup
+from setuptools import setup, find_packages
 
 setup(
     name='goastpy',
-    packages=['goastpy'],
-    version='0.1.0',
+    packages=find_packages(),
+    version='0.1.1',
     license='MIT',
     description='a python wrapper for the built-in go parser using c-types',
     author='Itay Gersten',
