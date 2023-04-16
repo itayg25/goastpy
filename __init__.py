@@ -1,1 +1,1 @@
-from .goastparser_wrapper import parse_source_code
+from .goastpy import GoAst

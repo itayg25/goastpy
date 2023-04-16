@@ -1,12 +1,16 @@
-from setuptools import setup, find_packages
+from distutils.core import setup
 
 setup(
-    name="gopyast",
-    version="0.1.0",
-    description="A Python wrapper for the Go AST parser",
-    author="Itay Gersten",
-    author_email="Itay.Gersten@gmail.com",
-    packages=find_packages(),
+    name='goastpy',
+    packages=['goastpy'],
+    version='0.1.0',
+    license='MIT',
+    description='a python wrapper for the built-in go parser using c-types',
+    author='Itay Gersten',
+    author_email='Itay.Gersten@gmail.com',
+    url='https://github.com/itayg25/goastpy',
+    download_url='https://github.com/itayg25/goastpy/archive/v_01.tar.gz',
+    keywords=['GO', 'GOLANG', 'PYTHON', 'AST', 'GOPYGO'],
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",

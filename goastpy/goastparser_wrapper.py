@@ -3,6 +3,7 @@ import sys
 import ctypes
 import subprocess
 from ctypes import c_char_p
+import json
 
 GO_LIBRARY = "goastparser.so"
 
@@ -41,15 +42,21 @@ def configure_go_function(go_lib):
     go_lib.ParseSourceCode.argtypes = [c_char_p]
 
 
-def parse_source_code(code):
-    """Wrap the Go function parseSourceCode and return the result as a string."""
-    build_go_library_if_not_exists()
+class GoAst:
+    def __init__(self, go_code):
+        self.__ast_json = self.parse_source_code_to_json(go_code)
+        self.ast = json.loads(self.__ast_json)
 
-    goastparser_lib = load_go_library()
-    configure_go_function(goastparser_lib)
+    @staticmethod
+    def parse_source_code_to_json(code):
+        """Wrap the Go function parseSourceCode and return the result as a string."""
+        build_go_library_if_not_exists()
 
-    result = goastparser_lib.ParseSourceCode(code.encode('utf-8'))
-    return result.decode('utf-8')
+        goastparser_lib = load_go_library()
+        configure_go_function(goastparser_lib)
+
+        result = goastparser_lib.ParseSourceCode(code.encode('utf-8'))
+        return result.decode('utf-8')
 
 
 def main():
@@ -62,8 +69,8 @@ func main() {
     fmt.Println("Hello, World!")
 }
 '''
-    parsed_code = parse_source_code(code)
-    print(parsed_code)
+    parsed_code = GoAst(code)
+    print(parsed_code.ast)
 
 
 if __name__ == '__main__':
