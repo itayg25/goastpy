@@ -1,5 +1,6 @@
 # gopyast
-a python wrapper for the built-in go parser
+
+python wrapper for the built-in go ast parser 
 
 
 ## installation
