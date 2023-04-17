@@ -1,9 +1,9 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="gopyast",
+    name="goastpy",
     version="0.1.3",
-    packages=["gopyast"],
+    packages=["goastpy"],
     install_requires=[],
     description='a python wrapper for the built-in go parser using c-types',
     author='Itay Gersten',
