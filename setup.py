@@ -2,10 +2,10 @@ from setuptools import setup, find_packages
 
 setup(
     name="goastpy",
-    version="0.1.4",
+    version="0.1.5",
     packages=find_packages(),
-    package_dir={"": "."},
-
+    package_dir={"goastpy": "./goastpy"},
+    data_files=[('goastpy', ['./goastpy/goastparser.h', './goastpy/goastparser.so'])],
     install_requires=[],
     description='a python wrapper for the built-in go parser using c-types',
     author='Itay Gersten',
