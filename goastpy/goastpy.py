@@ -1,5 +1,6 @@
 import json
-from .goastparser_wrapper import GoAstLib
+
+import goastparser_wrapper
 
 
 class GoAst:
@@ -12,7 +13,7 @@ class GoAst:
         """Wrap the Go function parseSourceCode and return the result as a string."""
         #
 
-        result = GoAstLib.lib().ParseSourceCode(code.encode('utf-8'))
+        result = goastparser_wrapper.GoAstLib.lib().ParseSourceCode(code.encode('utf-8'))
         return result.decode('utf-8')
 
 
