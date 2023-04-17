@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="gopyast",
-    version="0.1.2",
+    version="0.1.3",
     packages=["gopyast"],
     install_requires=[],
     description='a python wrapper for the built-in go parser using c-types',
