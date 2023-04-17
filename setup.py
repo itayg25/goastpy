@@ -2,9 +2,11 @@ from setuptools import setup, find_packages
 
 setup(
     name="goastpy",
-    version="0.1.5",
+    version="0.1.6",
     packages=find_packages(),
     package_dir={"goastpy": "./goastpy"},
+    include_package_data=True,
+    package_data={"goastpy": ['./goastpy/goastparser.h', './goastpy/goastparser.so']},
     data_files=[('goastpy', ['./goastpy/goastparser.h', './goastpy/goastparser.so'])],
     install_requires=[],
     description='a python wrapper for the built-in go parser using c-types',
@@ -27,5 +29,4 @@ setup(
         "Programming Language :: Python :: 3.9",
     ],
     python_requires=">=3.6",
-
 )
