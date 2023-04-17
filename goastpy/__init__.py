@@ -1,0 +1,1 @@
+from .goastpy import GoAst
