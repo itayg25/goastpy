@@ -2,12 +2,11 @@ from setuptools import setup, find_packages
 
 setup(
     name="goastpy",
-    version="0.1.7",
-    packages=find_packages(),
-    package_dir={"goastpy": "./goastpy"},
+    version="0.1.8",
     include_package_data=True,
-    package_data={"goastpy": ['./goastpy/goastparser.h', './goastpy/goastparser.so']},
-    data_files=[('goastpy', ['./goastpy/goastparser.h', './goastpy/goastparser.so'])],
+    packages=find_packages(),
+    package_dir={"": "."},
+    package_data={"goastpy": ["*.h", "*.so"]},
     install_requires=[],
     description='a python wrapper for the built-in go parser using c-types',
     author='Itay Gersten',
@@ -15,7 +14,8 @@ setup(
     url='https://github.com/itayg25/goastpy',
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
-    keywords=['GO', 'GOLANG', 'PYTHON', 'AST', 'GOPY', 'PYGO', 'PARSER', 'ASTPARSER'],
+    keywords=['GO', 'GOLANG', 'PYTHON', 'AST',
+              'GOPY', 'PYGO', 'PARSER', 'ASTPARSER'],
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
