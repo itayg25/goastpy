@@ -1,5 +1,13 @@
 # GoAstPy - Python Wrapper for Go AST Parser
 
+
+[![GitHub license](https://img.shields.io/github/license/itayg25/goastpy)](https://github.com/itayg25/goastpy/blob/master/LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/itayg25/goastpy)](https://github.com/itayg25/goastpy/issues)
+[![GitHub forks](https://img.shields.io/github/forks/itayg25/goastpy)](https://github.com/itayg25/goastpy/network)
+[![GitHub stars](https://img.shields.io/github/stars/itayg25/goastpy)](https://github.com/itayg25/goastpy/stargazers)
+[![PyPI version](https://badge.fury.io/py/goastpy.svg)](https://pypi.org/project/goastpy/)
+[![Downloads](https://pepy.tech/badge/goastpy)](https://pepy.tech/project/goastpy)
+
 `GoAstPy` is a Python wrapper for the built-in Go Abstract Syntax Tree (AST) parser. It allows you to parse and manipulate Go source code from within your Python applications. This package is perfect for developers working with Go code analysis, code generation, or automated refactoring tools in Python.
 
 ## 🚀 Installation
