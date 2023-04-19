@@ -2,13 +2,13 @@ from setuptools import setup, find_packages
 
 setup(
     name="goastpy",
-    version="0.1.8",
+    version="0.1.9",
     include_package_data=True,
     packages=find_packages(),
     package_dir={"": "."},
     package_data={"goastpy": ["*.h", "*.so"]},
     install_requires=[],
-    description='a python wrapper for the built-in go parser using c-types',
+    description='Python Wrapper for Go AST Parser',
     author='Itay Gersten',
     author_email='Itay.Gersten@gmail.com',
     url='https://github.com/itayg25/goastpy',
