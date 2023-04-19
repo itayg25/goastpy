@@ -1,6 +1,6 @@
 import json
 
-from . import goastparser_wrapper
+from goastpy import goastparser_wrapper
 
 
 class GoAst:
