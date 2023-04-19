@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="goastpy",
-    version="0.1.9",
+    version="0.1.10",
     include_package_data=True,
     packages=find_packages(),
     package_dir={"": "."},
@@ -15,7 +15,7 @@ setup(
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     keywords=['GO', 'GOLANG', 'PYTHON', 'AST',
-              'GOPY', 'PYGO', 'PARSER', 'ASTPARSER'],
+              'GOPY', 'PYGO', 'PARSER', 'ASTPARSER', 'goastpy', 'astpy','pyast','goast','gopy', 'golangast','abstract syntax tree'],
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
@@ -27,6 +27,7 @@ setup(
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
+        "Programming Language :: Golang",
     ],
     python_requires=">=3.6",
 )
