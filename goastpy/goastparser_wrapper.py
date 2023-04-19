@@ -1,11 +1,12 @@
 import os
+import platform
 import sys
 import ctypes
 import subprocess
 from ctypes import c_char_p
 from threading import Lock, Thread
 
-GO_LIBRARY = f"goastparser.so"
+GO_SHARED_LIB_NAME = "goastparser"
 
 
 class SingletonMeta(type):
@@ -46,6 +47,11 @@ class SingletonMeta(type):
 class GoAstLib(metaclass=SingletonMeta):
 
     @staticmethod
+    def get_lib_name():
+        os_name = platform.system()
+        return f"goastparser_{os_name}.so" 
+    
+    @staticmethod
     def __find_go_executable():
         go_executable = "go" + (".exe" if sys.platform == "win32" else "")
         for path in os.environ["PATH"].split(os.pathsep):
@@ -55,20 +61,23 @@ class GoAstLib(metaclass=SingletonMeta):
         raise FileNotFoundError("Go executable not found in the system's PATH")
 
     @staticmethod
-    def __build_go_library_if_not_exists():
-        if not os.path.exists(GO_LIBRARY):
-            print("Building Go shared library...")
-            try:
-                go_executable = GoAstLib.__find_go_executable()
-            except FileNotFoundError as e:
-                print(f"Error finding Go in path: {e}, trying to use default homebrew path")
-                go_executable = '/opt/homebrew/bin/go'
-            try:
-                subprocess.check_call([go_executable, "build", "-o", GO_LIBRARY, "-buildmode=c-shared", "main.go",
-                                       "goastparser_export.go"])
-            except subprocess.CalledProcessError as e:
-                print(f"Error building Go shared library: {e}")
-                raise
+    def build_go_library(output_file_name = None):
+        if output_file_name is None:
+            output_file_name = GoAstLib.get_lib_name()
+            
+        print("Building Go shared library...")
+        try:
+            go_executable = GoAstLib.__find_go_executable()
+        except FileNotFoundError as e:
+            print(f"Error finding Go in path: {e}, trying to use default homebrew path")
+            go_executable = '/opt/homebrew/bin/go'
+        try:
+            os.chdir(os.path.dirname(__file__))
+            subprocess.check_call([go_executable, "build", "-o", output_file_name, "-buildmode=c-shared", "main.go",
+                                    "goastparser_export.go"])
+        except subprocess.CalledProcessError as e:
+            print(f"Error building Go shared library: {e}")
+            raise
 
     @staticmethod
     def __configure_go_function(go_lib):
@@ -76,8 +85,11 @@ class GoAstLib(metaclass=SingletonMeta):
         go_lib.ParseSourceCode.argtypes = [c_char_p]
 
     @staticmethod
-    def __load_go_library():
-        return ctypes.CDLL(os.path.join(os.path.dirname(__file__), GO_LIBRARY))
+    def __load_go_library(build_lib = False):
+        if build_lib:
+             GoAstLib.build_go_library()
+        
+        return ctypes.CDLL(os.path.join(os.path.dirname(__file__), GoAstLib.get_lib_name()))
 
     def __init__(self):
         self.lib = self.__load_go_library()
@@ -86,3 +98,8 @@ class GoAstLib(metaclass=SingletonMeta):
     @staticmethod
     def lib():
         return GoAstLib().lib
+
+if __name__ == "__main__":
+    GoAstLib.build_go_library()    
+
+
