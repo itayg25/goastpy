@@ -28,7 +28,7 @@ func main() {
 // of the abstract syntax tree (AST) in byte format.
 func parseSourceCode(code string) []byte {
 	fileSet := token.NewFileSet()
-	file, _ := parser.ParseFile(fileSet, "main.go", code, 0)
+	file, _ := parser.ParseFile(fileSet, "main.go", code, parser.ParseComments)
 	astMap := traverseAST(fileSet, file)
 	result, _ := json.Marshal(astMap)
 	return result
